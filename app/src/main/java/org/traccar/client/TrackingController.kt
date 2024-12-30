@@ -185,7 +185,7 @@ class TrackingController(private val context: Context) : PositionListener, Netwo
         extra.put("speed", position.speed)
 
         json.put("extra", extra)
-        return json.toString()
+        return json.toString()+"\n"
     }
 
 
