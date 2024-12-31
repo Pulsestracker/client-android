@@ -159,6 +159,8 @@ class TrackingController(private val context: Context) : PositionListener, Netwo
 
         val payload = createPayload(position)
         sendUdpData(url, payload)
+
+        delete(position)
     }
 
     private fun createPayload(position: Position): String {

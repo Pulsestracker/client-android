@@ -1,14 +1,12 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'com.google.gms.google-services'
-    id 'com.google.firebase.crashlytics'
 }
 
 android {
     compileSdk 34
     defaultConfig {
-        applicationId 'org.traccar.client'
+        applicationId 'org.pulsetracker.client'
         minSdkVersion 21
         targetSdkVersion 34
         versionCode 88
@@ -29,7 +27,6 @@ android {
     productFlavors {
         regular {
             isDefault = true
-            ext.enableCrashlytics = false
         }
         google
     }
@@ -67,25 +64,4 @@ dependencies {
     testImplementation 'androidx.test:core:1.6.1'
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.robolectric:robolectric:4.7.3'
-    googleImplementation platform('com.google.firebase:firebase-bom:33.2.0')
-    googleImplementation 'com.google.firebase:firebase-analytics'
-    googleImplementation 'com.google.firebase:firebase-crashlytics'
-    googleImplementation 'com.google.android.gms:play-services-location:21.3.0'
-    googleImplementation 'com.google.android.play:review:2.0.1'
-}
-
-tasks.register('copyFirebaseConfig', Copy) {
-    from '../../environment/google-services'
-    into '.'
-    include 'traccar-client-android.json'
-    rename('traccar-client-android.json', 'google-services.json')
-}
-afterEvaluate {
-    tasks.matching { it.name.contains('Google') }.configureEach { task ->
-        if (task.name.contains('Regular')) {
-            task.enabled false
-        } else {
-            task.dependsOn copyFirebaseConfig
-        }
-    }
 }
