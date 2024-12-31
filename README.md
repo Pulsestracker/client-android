@@ -1,4 +1,5 @@
 # [Pulsestracker Client for Android](https://pulsestracker.com)
+![image](https://github.com/user-attachments/assets/b8580939-5c44-4c09-83e8-24ad321fc5ec)
 
 ## Overview
 
